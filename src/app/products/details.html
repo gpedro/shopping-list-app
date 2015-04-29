@@ -8,18 +8,18 @@
         <h3 class="panel-title">Panel title</h3>
       </div>
       <div class="panel-body">
-        <form ng-submit="productVm.save()">
+        <form name="productForm" ng-submit="productVm.save()">
           <div class="row">
             <div class="col-md-4">
               <div class="form-group">
                 <label for="product_name">Name</label>
-                <input type="text" class="form-control" id="product_name" placeholder="Enter name" ng-model="productVm.product.name">
+                <input type="text" name="name" class="form-control" id="product_name" placeholder="Enter name" ng-required="true" ng-model="productVm.product.name">
               </div>
             </div>
             <div class="col-md-4">
               <div class="form-group">
                 <label for="product_quantity">Quantity</label>
-                <input type="text" class="form-control" id="product_quantity" placeholder="Enter quantity" ng-model="productVm.product.quantity">
+                <input type="number" min="0" name="quantity" class="form-control" id="product_quantity" placeholder="Enter quantity" ng-required="true" ng-model="productVm.product.quantity">
               </div>
             </div>
             <div class="col-md-4">
@@ -27,13 +27,13 @@
                 <label for="product_price">Price</label>
                 <div class="input-group">
                   <span class="input-group-addon" id="product-price-addon">$</span>
-                  <input type="text" class="form-control" id="product_price" placeholder="Enter price" aria-describedby="product-price-addon" ng-model="productVm.product.price">
+                  <input type="number" min="0" name="price" class="form-control" id="product_price" placeholder="Enter price" aria-describedby="product-price-addon" ng-required="true" ng-model="productVm.product.price">
                 </div>
               </div>
             </div>
           </div>
           <div class="form-group">
-            <button type="submit" class="btn btn-success" role="button"><span class="glyphicon glyphicon-ok"></span> Save</button>
+            <button type="submit" class="btn btn-success" ng-disabled="productForm.$invalid" role="button"><span class="glyphicon glyphicon-ok"></span> Save</button>
             <a class="btn btn-warning" href="#/products" role="button"><span class="glyphicon glyphicon-remove"></span> Cancel</a>
             <a class="btn btn-danger" role="button" ng-show="productVm.persisted" ng-click="productVm.remove()"><span class="glyphicon glyphicon-minus"></span> Remove</a>
           </div>
